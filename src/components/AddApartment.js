@@ -2,16 +2,18 @@ import React, {useState} from 'react';
 import Button from './Button';
 
 const initialValues = {
-  title: '',
-  days: '',
-  rooms: '',
-  price: '',
-  description: '',
+  name: 'some room',
+  days: '3',
+  rooms: '1',
+  price: '50',
+  description: 'some room description',
 };
 
-function ApartmentForm() {
-  const [numOfApts, setNumOfApts] = useState(0);
-  // TODO: useState for each form field
+function AddApartment({onAdd}) {
+  // const onClick = () => {
+  //   console.log('click');
+  // };
+
   // const [aptTitle, setAptTitle] = useState();
   // const [daysNumber, setDaysNumber] = useState(1);
   // const [roomsNumber, setRoomsNumber] = useState(0);
@@ -26,22 +28,29 @@ function ApartmentForm() {
       [name]: value,
     });
 
-    console.log(values);
+    // console.log(values);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onAdd(values);
+    setValues(initialValues);
   };
 
   return (
+    //!TODO: add validation for days field
     <>
       <h2>🤑Create a new rent</h2>
-      <form action='' className='apartment-form'>
+      <form action='' className='apartment-form' onSubmit={handleSubmit}>
         <div className='form-field'>
-          <label htmlFor='title'>Title</label>
+          <label htmlFor='name'>Name</label>
           <input
             type='text'
-            name='title'
+            name='name'
             placeholder='Ex. Flat in the city center'
             maxLength={99}
             required
-            value={values.title}
+            value={values.name}
             onChange={handleChange}
           />
         </div>
@@ -51,7 +60,7 @@ function ApartmentForm() {
           <input
             type='number'
             name='days'
-            placeholder='4'
+            placeholder='1'
             min={1}
             required
             value={values.days}
@@ -61,10 +70,15 @@ function ApartmentForm() {
 
         <div className='form-field'>
           <label htmlFor='rooms'>Rooms</label>
-          <select name='rooms' id='rooms'>
-            <option value='one'>1</option>
-            <option value='two'>2</option>
-            <option value='three'>3+</option>
+          <select
+            name='rooms'
+            id='rooms'
+            value={values.rooms}
+            onChange={handleChange}
+          >
+            <option value='1'>1</option>
+            <option value='2'>2</option>
+            <option value='3+'>3+</option>
           </select>
         </div>
 
@@ -95,10 +109,12 @@ function ApartmentForm() {
           />
         </div>
 
-        <Button BgColor='#26cf96' text='Submit rent' />
+        <input type='submit' value='Submit rent' />
+
+        {/* <Button BgColor='#26cf96' text='Submit rent' onClick={onClick} /> */}
       </form>
     </>
   );
 }
 
-export default ApartmentForm;
+export default AddApartment;

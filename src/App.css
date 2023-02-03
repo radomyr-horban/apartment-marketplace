@@ -78,4 +78,6 @@ textarea {
   margin: 15px 0;
   padding: 10px;
   background-color: white;
+
+  overflow-wrap: break-word;
 }

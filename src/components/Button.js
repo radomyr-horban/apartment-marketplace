@@ -1,17 +1,13 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 function Button(props) {
-  // TODO change button color and text via props
-
-  const [btnText, setBtnText] = useState('Button');
-  // const [btnColor, setBtnColor] = useState('black');
-
   return (
     <>
       <button
         type='submit'
         className='btn'
         style={{backgroundColor: props.BgColor}}
+        onClick={props.onClick}
       >
         {props.text}
       </button>
