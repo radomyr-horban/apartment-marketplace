@@ -44,9 +44,12 @@ function App() {
   ]);
 
   // TODO (local storage)
-  // useEffect(() => {
-  //   localStorage.setItem('score', score);
-  // }, [score]);
+  // localStorage.setItem('score', score)
+  // localStorage.getItem('score')
+
+  useEffect(() => {
+    localStorage.setItem('score', apartments);
+  }, []);
 
   //! Cancel Rent
   const cancelSubmit = (id) => {
