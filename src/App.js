@@ -5,51 +5,55 @@ import AddApartment from './components/AddApartment';
 import SortPanel from './components/SortPanel';
 import CurrentRents from './components/CurrentRents';
 
+const initialState = [
+  {
+    id: 1,
+    name: 'Market square apartments 1',
+    rooms: 1,
+    days: 1,
+    price: 10,
+    description: 'some description',
+  },
+  {
+    id: 2,
+    name: 'Market square apartments 2',
+    rooms: 2,
+    days: 2,
+    price: 20,
+    description: 'some description',
+  },
+  {
+    id: 3,
+    name: 'Market square apartments 3',
+    rooms: 3,
+    days: 3,
+    price: 30,
+    description: 'some description',
+  },
+];
+
 function App() {
-  const [apartments, setApartments] = useState([
-    {
-      id: 1,
-      name: 'Market square apartments 1',
-      rooms: 1,
-      days: 1,
-      price: 10,
-      description: 'some description',
-    },
-    {
-      id: 2,
-      name: 'Market square apartments 2',
-      rooms: 2,
-      days: 2,
-      price: 20,
-      description: 'some description',
-    },
-    {
-      id: 3,
-      name: 'Market square apartments 3',
-      rooms: 3,
-      days: 3,
-      price: 30,
-      description: 'some description',
-    },
-  ]);
+  const [apartments, setApartments] = useState(
+    JSON.parse(localStorage.getItem('apartments')) || initialState
+  );
 
-  const [currentRent, setCurrentRent] = useState([
-    {
-      id: 1,
-      name: 'Market square apartments 1',
-      rooms: 1,
-      days: 1,
-      price: 10,
-    },
-  ]);
+  const [currentRent, setCurrentRent] = useState(
+    JSON.parse(localStorage.getItem('currentRent')) || [
+      {
+        id: 1,
+        name: 'Market square apartments 1',
+        rooms: 1,
+        days: 1,
+        price: 10,
+      },
+    ]
+  );
 
-  // TODO (local storage)
-  // localStorage.setItem('score', score)
-  // localStorage.getItem('score')
-
+  //! (local storage)
   useEffect(() => {
-    localStorage.setItem('score', apartments);
-  }, []);
+    localStorage.setItem('apartments', JSON.stringify(apartments));
+    localStorage.setItem('currentRent', JSON.stringify(currentRent));
+  }, [apartments, currentRent]);
 
   //! Cancel Rent
   const cancelSubmit = (id) => {
@@ -74,10 +78,7 @@ function App() {
       id,
       ...apt,
     };
-    console.log(newApt);
-
-    //TODO (local storage)
-    // setScore((prev) => prev + 1);
+    // console.log(newApt);
 
     // update number of Apts
     setAptsCounter((prev) => prev + 1);
