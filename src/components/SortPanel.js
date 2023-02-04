@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 function SortPanel({aptsCounter, setSortType, onFilter}) {
   const handleFilter = (e) => {
@@ -15,7 +15,7 @@ function SortPanel({aptsCounter, setSortType, onFilter}) {
         <h2>🏡 Available Apartments ({aptsCounter})</h2>
 
         <div>
-          <label htmlFor='rooms'>Rooms</label>
+          <label htmlFor='rooms'>Filter (rooms):</label>
           <select name='rooms' id='rooms' onChange={(e) => handleFilter(e)}>
             <option value='default'>Show all</option>
             <option value='1'>1</option>

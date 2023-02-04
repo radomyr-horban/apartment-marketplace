@@ -6,7 +6,9 @@ import SortPanel from './components/SortPanel';
 import CurrentRents from './components/CurrentRents';
 
 // TODO:
-// validation for number input ('05')
+// 1) remove initial value from Form
+// 2) fix Form responsiveness
+// 3) split CSS for seperate components
 
 const initialState = [
   {
@@ -63,7 +65,7 @@ function App() {
   const cancelSubmit = (id) => {
     setCurrentRent(currentRent.filter((apt) => apt.id !== id));
   };
-  console.log(apartments);
+  // console.log(apartments);
 
   // Rent Apartment
   // console.log(currentRent);

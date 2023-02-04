@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Button from './Button';
 // 🤑
 // 🤩
@@ -21,7 +21,11 @@ function Apartment({apt, onDelete, onRent}) {
           <span>${apt.price}</span>
           <br />
           <br />
-          <span id='apt-description'>${apt.description}</span>
+          <span id='apt-description'>
+            <b>Description: </b>
+            <br />
+            {apt.description}
+          </span>
         </div>
 
         <div className='apt-buttons'>

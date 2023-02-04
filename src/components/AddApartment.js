@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import Button from './Button';
 
 const initialValues = {
@@ -41,10 +41,9 @@ function AddApartment({onAdd}) {
   };
 
   return (
-    //!TODO: add validation for days field
     <>
-      <h2>🤑Create a new rent</h2>
-      <form action='' className='apartment-form' onSubmit={handleSubmit}>
+      <h2>🤑 Create a new rent</h2>
+      <form action='POST' className='apartment-form' onSubmit={handleSubmit}>
         <div className='form-field'>
           <label htmlFor='name'>Name</label>
           <input
@@ -114,7 +113,7 @@ function AddApartment({onAdd}) {
 
         {/* <input type='submit' value='Submit rent' /> */}
 
-        <Button BgColor='#26cf96' text='Submit rent' />
+        <Button BgColor='#26cf96' text='Submit rent' class='submit-btn' />
       </form>
     </>
   );

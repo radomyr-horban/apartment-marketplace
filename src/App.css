@@ -1,6 +1,5 @@
 .App {
   max-width: 1000px;
-
   margin: 0 auto;
 }
 
@@ -9,7 +8,7 @@ body {
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 30px;
 }
 
 h2 {
@@ -17,7 +16,7 @@ h2 {
 }
 
 select {
-  padding: 0 10px;
+  padding: 9px 10px;
 }
 
 /*? Apartment form */
@@ -29,18 +28,40 @@ select {
   padding: 10px;
 }
 
+textarea {
+  resize: vertical;
+}
+
 .apartment-form input,
 select,
 textarea {
-  min-height: 20px;
+  min-height: 30px;
 }
 
 @media screen and (max-width: 900px) {
+  body {
+    margin: 10px 20px;
+  }
+
+  h1,
+  h2 {
+    text-align: center;
+  }
+
   .apartment-form {
     flex-direction: column;
+    align-items: stretch;
+    padding: 15px;
   }
-  .form-field input {
+
+  .form-field > input,
+  .form-field > select,
+  .form-field > textarea {
     width: 100%;
+  }
+
+  .sort-panel h2 {
+    flex-basis: 100%;
   }
 }
 
@@ -60,6 +81,7 @@ textarea {
 
 .btn:hover {
   cursor: pointer;
+  opacity: 0.7;
 }
 
 /*? Sort panel */
@@ -67,10 +89,18 @@ textarea {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+
+  flex-wrap: wrap;
+}
+
+.sort-panel label {
+  margin: 10px;
 }
 
 /*? Apartment */
+.apartments-panel {
+  margin-bottom: 100px;
+}
 .apt-block {
   display: flex;
   justify-content: space-between;
@@ -88,4 +118,8 @@ textarea {
 .apt-buttons {
   display: flex;
   flex-wrap: nowrap;
+}
+
+.submit-btn {
+  margin: 18px 0;
 }

@@ -28,16 +28,18 @@ function Apartments({apartments, onDelete, onRent, sortType, filterValue}) {
 
   return (
     <>
-      {apartmentsCopy.map((apt) => {
-        return (
-          <Apartment
-            key={apt.id}
-            apt={apt}
-            onDelete={onDelete}
-            onRent={onRent}
-          />
-        );
-      })}
+      <div className='apartments-panel'>
+        {apartmentsCopy.map((apt) => {
+          return (
+            <Apartment
+              key={apt.id}
+              apt={apt}
+              onDelete={onDelete}
+              onRent={onRent}
+            />
+          );
+        })}
+      </div>
     </>
   );
 }
