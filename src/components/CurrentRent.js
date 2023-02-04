@@ -15,7 +15,11 @@ function CurrentRent({apt, onCancelSubmit}) {
           <span>${apt.price}</span>
           <br />
           <br />
-          <span>${apt.description}</span>
+          <span id='apt-description'>
+            <b>Description: </b>
+            <br />
+            {apt.description}
+          </span>
         </div>
 
         <div className='apt-buttons'>
