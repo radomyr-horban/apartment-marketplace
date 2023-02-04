@@ -6,10 +6,7 @@ import SortPanel from './components/SortPanel';
 import CurrentRents from './components/CurrentRents';
 
 // TODO:
-// 1) remove days
-// 2) id: string (NOT Number)
-// 3) sort by price
-// 4) filter by rooms
+// validation for number input ('05')
 
 const initialState = [
   {
@@ -46,7 +43,7 @@ function App() {
   const [currentRent, setCurrentRent] = useState(
     JSON.parse(localStorage.getItem('currentRent')) || [
       {
-        id: 1,
+        id: '1',
         name: 'Market square apartments 1',
         rooms: 1,
         days: 1,
@@ -66,9 +63,10 @@ function App() {
   const cancelSubmit = (id) => {
     setCurrentRent(currentRent.filter((apt) => apt.id !== id));
   };
-  // console.log(apartments);
+  console.log(apartments);
 
   // Rent Apartment
+  // console.log(currentRent);
   const rentApt = (apt) => {
     if (!currentRent.some((el) => el.id === apt.id)) {
       setCurrentRent([...currentRent, apt]);

@@ -21,7 +21,7 @@ function Apartment({apt, onDelete, onRent}) {
           <span>${apt.price}</span>
           <br />
           <br />
-          <span>${apt.description}</span>
+          <span id='apt-description'>${apt.description}</span>
         </div>
 
         <div className='apt-buttons'>

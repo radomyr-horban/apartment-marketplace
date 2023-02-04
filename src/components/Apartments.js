@@ -19,7 +19,7 @@ function Apartments({apartments, onDelete, onRent, sortType, filterValue}) {
   const filterByRooms = (filterValue) => {
     if (filterValue !== 'default') {
       return (apartmentsCopy = apartmentsCopy.filter((apt) => {
-        return apt.rooms === filterValue;
+        return apt.rooms === +filterValue;
       }));
     }
     return apartments;

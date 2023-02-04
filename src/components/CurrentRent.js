@@ -13,6 +13,9 @@ function CurrentRent({apt, onCancelSubmit}) {
           <span>{apt.rooms} rooms / </span>
           <span>{apt.days} days / </span>
           <span>${apt.price}</span>
+          <br />
+          <br />
+          <span>${apt.description}</span>
         </div>
 
         <div className='apt-buttons'>

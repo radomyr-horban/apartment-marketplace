@@ -1,5 +1,6 @@
 .App {
   max-width: 1000px;
+
   margin: 0 auto;
 }
 
@@ -78,6 +79,13 @@ textarea {
   margin: 15px 0;
   padding: 10px;
   background-color: white;
+}
 
-  overflow-wrap: break-word;
+.apt-info {
+  display: inline-block;
+  word-break: break-word;
+}
+.apt-buttons {
+  display: flex;
+  flex-wrap: nowrap;
 }
