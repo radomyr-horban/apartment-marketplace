@@ -10,15 +10,6 @@ const initialValues = {
 };
 
 function AddApartment({onAdd}) {
-  // const onClick = () => {
-  //   console.log('click');
-  // };
-
-  // const [aptTitle, setAptTitle] = useState();
-  // const [daysNumber, setDaysNumber] = useState(1);
-  // const [roomsNumber, setRoomsNumber] = useState(0);
-  // const [rentPrice, setRentPrice] = useState();
-  // const [aptDescription, setAptDescription] = useState('hello');
   const [values, setValues] = useState(initialValues);
 
   const handleChange = (e) => {
@@ -27,8 +18,6 @@ function AddApartment({onAdd}) {
       ...values,
       [name]: value,
     });
-
-    // console.log(values);
   };
 
   const handleSubmit = (e) => {
@@ -78,7 +67,7 @@ function AddApartment({onAdd}) {
           >
             <option value='1'>1</option>
             <option value='2'>2</option>
-            <option value='3+'>3+</option>
+            <option value='3'>3</option>
           </select>
         </div>
 

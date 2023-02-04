@@ -5,9 +5,15 @@ import AddApartment from './components/AddApartment';
 import SortPanel from './components/SortPanel';
 import CurrentRents from './components/CurrentRents';
 
+// TODO:
+// 1) remove days
+// 2) id: string (NOT Number)
+// 3) sort by price
+// 4) filter by rooms
+
 const initialState = [
   {
-    id: 1,
+    id: '1',
     name: 'Market square apartments 1',
     rooms: 1,
     days: 1,
@@ -15,7 +21,7 @@ const initialState = [
     description: 'some description',
   },
   {
-    id: 2,
+    id: '2',
     name: 'Market square apartments 2',
     rooms: 2,
     days: 2,
@@ -23,7 +29,7 @@ const initialState = [
     description: 'some description',
   },
   {
-    id: 3,
+    id: '3',
     name: 'Market square apartments 3',
     rooms: 3,
     days: 3,
@@ -45,23 +51,24 @@ function App() {
         rooms: 1,
         days: 1,
         price: 10,
+        description: 'some description',
       },
     ]
   );
 
-  //! (local storage)
+  // (local storage)
   useEffect(() => {
     localStorage.setItem('apartments', JSON.stringify(apartments));
     localStorage.setItem('currentRent', JSON.stringify(currentRent));
   }, [apartments, currentRent]);
 
-  //! Cancel Rent
+  // Cancel Rent
   const cancelSubmit = (id) => {
     setCurrentRent(currentRent.filter((apt) => apt.id !== id));
   };
-  console.log(currentRent);
+  // console.log(apartments);
 
-  //! Rent Apartment
+  // Rent Apartment
   const rentApt = (apt) => {
     if (!currentRent.some((el) => el.id === apt.id)) {
       setCurrentRent([...currentRent, apt]);
@@ -70,38 +77,50 @@ function App() {
 
   const [aptsCounter, setAptsCounter] = useState(apartments.length);
 
-  //! Add Apartment
+  // Add Apartment
   const addApt = (apt) => {
-    const id = Math.floor(Math.random() * 10000) + 1;
+    // const id = Math.floor(Math.random() * 10000) + 1;
+    const id = '' + Date.now();
 
     const newApt = {
       id,
       ...apt,
     };
-    // console.log(newApt);
 
     // update number of Apts
     setAptsCounter((prev) => prev + 1);
     setApartments([...apartments, newApt]);
   };
 
-  //! Delete Apartment
+  // Delete Apartment
   const deleteApt = (id) => {
     setApartments(apartments.filter((apt) => apt.id !== id));
     // update number of Apts
     setAptsCounter((prev) => prev - 1);
   };
 
+  //! Sort by price
+  const [sortType, setSortType] = useState('default');
+
+  //! Filter by rooms
+  const [filterValue, setFilterValue] = useState('default');
+
   return (
     <div className='App'>
       <h1>Apartments Marketplace</h1>
       <AddApartment onAdd={addApt} />
       <CurrentRents currentRent={currentRent} onCancelSubmit={cancelSubmit} />
-      <SortPanel aptsCounter={aptsCounter} />
+      <SortPanel
+        aptsCounter={aptsCounter}
+        onFilter={setFilterValue}
+        setSortType={setSortType}
+      />
       <Apartments
         apartments={apartments}
         onDelete={deleteApt}
         onRent={rentApt}
+        sortType={sortType}
+        filterValue={filterValue}
       />
     </div>
   );
