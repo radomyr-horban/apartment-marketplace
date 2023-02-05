@@ -1,4 +1,5 @@
 import React from 'react';
+import './SortPanel.css';
 
 function SortPanel({aptsCounter, setSortType, onFilter}) {
   const handleFilter = (e) => {

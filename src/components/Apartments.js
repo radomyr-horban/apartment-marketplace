@@ -1,5 +1,5 @@
 import React from 'react';
-import Apartment from './Apartment';
+import Apartment from './Apartment/Apartment';
 
 function Apartments({apartments, onDelete, onRent, sortType, filterValue}) {
   let apartmentsCopy = [...apartments];

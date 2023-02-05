@@ -19,26 +19,6 @@ select {
   padding: 9px 10px;
 }
 
-/*? Apartment form */
-.apartment-form {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: flex-start;
-  background-color: rgb(219, 219, 219);
-  padding: 10px;
-}
-
-textarea {
-  resize: vertical;
-  overflow: hidden;
-}
-
-.apartment-form input,
-select,
-textarea {
-  min-height: 30px;
-}
-
 @media screen and (max-width: 900px) {
   body {
     margin: 10px 20px;
@@ -48,79 +28,8 @@ textarea {
   h2 {
     text-align: center;
   }
-
-  .apartment-form {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 15px;
-  }
-
-  .form-field > input,
-  .form-field > select,
-  .form-field > textarea {
-    width: 100%;
-  }
-
-  .sort-panel h2 {
-    flex-basis: 100%;
-  }
 }
 
 .apartment-form label {
   display: block;
-}
-
-/*? Button */
-.btn {
-  margin: 0 10px;
-  padding: 10px;
-  border: none;
-  min-width: 100px;
-  border-radius: 5px;
-  color: #fff;
-}
-
-.btn:hover {
-  cursor: pointer;
-  opacity: 0.7;
-}
-
-/*? Sort panel */
-.sort-panel {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  flex-wrap: wrap;
-}
-
-.sort-panel label {
-  margin: 10px;
-}
-
-/*? Apartment */
-.apartments-panel {
-  margin-bottom: 100px;
-}
-.apt-block {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  margin: 15px 0;
-  padding: 10px;
-  background-color: white;
-}
-
-.apt-info {
-  display: inline-block;
-  word-break: break-word;
-}
-.apt-buttons {
-  display: flex;
-  flex-wrap: nowrap;
-}
-
-.submit-btn {
-  margin: 18px 0;
 }

@@ -1,5 +1,7 @@
 import React from 'react';
-import Button from './Button';
+import Button from '../Button/Button';
+
+import './Apartment.css';
 
 function Apartment({apt, onDelete, onRent}) {
   return (

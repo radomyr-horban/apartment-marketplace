@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react';
 import './App.css';
 import Apartments from './components/Apartments';
-import AddApartment from './components/AddApartment';
-import SortPanel from './components/SortPanel';
+import AddApartment from './components/AddApartment/AddApartment';
+import SortPanel from './components/SortPanel/SortPanel';
 import CurrentRents from './components/CurrentRents';
 
 // TODO:
@@ -64,7 +64,6 @@ function App() {
   // console.log(apartments);
 
   // Rent Apartment
-  // console.log(currentRent);
   const rentApt = (apt) => {
     if (!currentRent.some((el) => el.id === apt.id)) {
       setCurrentRent([...currentRent, apt]);
