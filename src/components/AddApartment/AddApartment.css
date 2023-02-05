@@ -17,6 +17,10 @@ textarea {
   min-height: 30px;
 }
 
+.apartment-form label {
+  display: block;
+}
+
 @media screen and (max-width: 900px) {
   .apartment-form {
     flex-direction: column;
