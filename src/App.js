@@ -5,11 +5,6 @@ import AddApartment from './components/AddApartment/AddApartment';
 import SortPanel from './components/SortPanel/SortPanel';
 import CurrentRents from './components/CurrentRents';
 
-// TODO:
-// 1) remove initial value from Form
-// 2) fix Form responsiveness
-// 3) split CSS for seperate components
-
 const initialState = [
   {
     id: '1',
@@ -51,7 +46,7 @@ function App() {
     ]
   );
 
-  // (local storage)
+  // local storage
   useEffect(() => {
     localStorage.setItem('apartments', JSON.stringify(apartments));
     localStorage.setItem('currentRent', JSON.stringify(currentRent));
@@ -61,7 +56,6 @@ function App() {
   const cancelSubmit = (id) => {
     setCurrentRent(currentRent.filter((apt) => apt.id !== id));
   };
-  // console.log(apartments);
 
   // Rent Apartment
   const rentApt = (apt) => {
@@ -91,10 +85,10 @@ function App() {
     setAptsCounter((prev) => prev - 1);
   };
 
-  //! Sort by price
+  // Sort by price
   const [sortType, setSortType] = useState('default');
 
-  //! Filter by rooms
+  // Filter by rooms
   const [filterValue, setFilterValue] = useState('default');
 
   return (
