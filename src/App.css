@@ -27,7 +27,23 @@ select {
   background-color: rgb(219, 219, 219);
   padding: 10px;
 }
-
+/* TODO: flex-grow items */
+/* .form-field {
+  display: flex;
+} */
+/* #name {
+  width: 200px;
+}
+#rooms {
+  width: 80px;
+}
+#price {
+  width: 80px;
+}
+#description {
+  width: 300px;
+} */
+/* ! */
 textarea {
   resize: vertical;
 }

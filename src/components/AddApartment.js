@@ -49,15 +49,17 @@ function AddApartment({onAdd}) {
           <input
             type='text'
             name='name'
+            id='name'
             placeholder='Ex. Flat in the city center'
             maxLength={99}
             required
             value={values.name}
+            // size='50'
             onChange={handleChange}
           />
         </div>
 
-        <div className='form-field'>
+        {/* <div className='form-field
           <label htmlFor='days'>Days</label>
           <input
             type='number'
@@ -68,7 +70,7 @@ function AddApartment({onAdd}) {
             value={values.days}
             onChange={handleChange}
           />
-        </div>
+        </div> */}
 
         <div className='form-field'>
           <label htmlFor='rooms'>Rooms</label>
@@ -89,10 +91,11 @@ function AddApartment({onAdd}) {
           <input
             type='number'
             name='price'
+            id='price'
             placeholder='99.00'
             min={1}
-            required
             value={values.price}
+            required
             onChange={handleChange}
           />
         </div>
@@ -107,6 +110,7 @@ function AddApartment({onAdd}) {
             maxLength={999}
             required
             value={values.description}
+            // cols={20}
             onChange={handleChange}
           />
         </div>
