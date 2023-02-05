@@ -1,9 +1,7 @@
 import React from 'react';
-// import Apartment from './Apartment';
 import CurrentRent from './CurrentRent';
 
 function CurrentRents({currentRent, onCancelSubmit}) {
-  // console.log(currentRent);
   return (
     <>
       <h2>🤩 Your current rent</h2>

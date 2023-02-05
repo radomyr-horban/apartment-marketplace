@@ -2,11 +2,10 @@ import React, {useState} from 'react';
 import Button from './Button';
 
 const initialValues = {
-  name: 'some room',
-  days: 3,
+  name: '',
   rooms: 1,
-  price: 50,
-  description: 'some room description',
+  price: '',
+  description: '',
 };
 
 function AddApartment({onAdd}) {
@@ -15,7 +14,6 @@ function AddApartment({onAdd}) {
   const handleChange = (e) => {
     const {name, value} = e.target;
 
-    //! validation for the input type
     if (e.target.type === 'number' || e.target.tagName === 'SELECT') {
       setValues({
         ...values,
@@ -28,7 +26,6 @@ function AddApartment({onAdd}) {
       });
     }
 
-    // ! removing leading zeros from 'number' input
     if (e.target.type === 'number') {
       e.target.value = +parseInt(e.target.value);
     }
@@ -54,23 +51,9 @@ function AddApartment({onAdd}) {
             maxLength={99}
             required
             value={values.name}
-            // size='50'
             onChange={handleChange}
           />
         </div>
-
-        {/* <div className='form-field
-          <label htmlFor='days'>Days</label>
-          <input
-            type='number'
-            name='days'
-            placeholder='1'
-            min={1}
-            required
-            value={values.days}
-            onChange={handleChange}
-          />
-        </div> */}
 
         <div className='form-field'>
           <label htmlFor='rooms'>Rooms</label>
@@ -110,12 +93,9 @@ function AddApartment({onAdd}) {
             maxLength={999}
             required
             value={values.description}
-            // cols={20}
             onChange={handleChange}
           />
         </div>
-
-        {/* <input type='submit' value='Submit rent' /> */}
 
         <Button BgColor='#26cf96' text='Submit rent' class='submit-btn' />
       </form>

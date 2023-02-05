@@ -15,25 +15,22 @@ const initialState = [
     id: '1',
     name: 'Market square apartments 1',
     rooms: 1,
-    days: 1,
     price: 10,
-    description: 'some description',
+    description: 'Some description of the apartment',
   },
   {
     id: '2',
     name: 'Market square apartments 2',
     rooms: 2,
-    days: 2,
     price: 20,
-    description: 'some description',
+    description: 'Some description of the apartment',
   },
   {
     id: '3',
     name: 'Market square apartments 3',
     rooms: 3,
-    days: 3,
     price: 30,
-    description: 'some description',
+    description: 'Some description of the apartment',
   },
 ];
 
@@ -48,7 +45,6 @@ function App() {
         id: '1',
         name: 'Market square apartments 1',
         rooms: 1,
-        days: 1,
         price: 10,
         description: 'some description',
       },
@@ -79,7 +75,6 @@ function App() {
 
   // Add Apartment
   const addApt = (apt) => {
-    // const id = Math.floor(Math.random() * 10000) + 1;
     const id = '' + Date.now();
 
     const newApt = {
@@ -87,7 +82,6 @@ function App() {
       ...apt,
     };
 
-    // update number of Apts
     setAptsCounter((prev) => prev + 1);
     setApartments([...apartments, newApt]);
   };
@@ -95,7 +89,6 @@ function App() {
   // Delete Apartment
   const deleteApt = (id) => {
     setApartments(apartments.filter((apt) => apt.id !== id));
-    // update number of Apts
     setAptsCounter((prev) => prev - 1);
   };
 

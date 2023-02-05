@@ -1,8 +1,5 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Button from './Button';
-// 🤑
-// 🤩
-// 🏡
 
 function CurrentRent({apt, onCancelSubmit}) {
   return (
@@ -11,7 +8,6 @@ function CurrentRent({apt, onCancelSubmit}) {
         <div className='apt-info'>
           <span>{apt.name} / </span>
           <span>{apt.rooms} rooms / </span>
-          <span>{apt.days} days / </span>
           <span>${apt.price}</span>
           <br />
           <br />
