@@ -8,7 +8,7 @@
 
 textarea {
   resize: vertical;
-  overflow: hidden;
+  max-height: 200px;
 }
 
 .apartment-form input,
