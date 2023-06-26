@@ -24,7 +24,27 @@ const getSingleApartment = async (req, res) => {
 const createApartment = async (req, res) => {
   const { name, rooms, price, description } = req.body
 
-  // add doc to db
+  let emptyFields = []
+
+  if (!name) {
+    emptyFields.push('name')
+  }
+  if (!rooms) {
+    emptyFields.push('rooms')
+  }
+  if (!price) {
+    emptyFields.push('price')
+  }
+  if (!description) {
+    emptyFields.push('description')
+  }
+
+  if (emptyFields.length > 0) {
+    return res
+      .status(400)
+      .json({ error: 'Please fill all the fields', emptyFields })
+  }
+  // add document to db
   try {
     const apartment = await Apartment.create({
       name,

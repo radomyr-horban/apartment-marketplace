@@ -1,42 +1,69 @@
-import React, {useState} from 'react';
-import Button from '../Button/Button';
-import './AddApartment.css';
+import React, { useState } from 'react'
+import Button from '../Button/Button'
+import './AddApartment.css'
+import useApartmentsContext from '../../hooks/useApartmentsContext'
 
-const initialValues = {
-  name: '',
-  rooms: 1,
-  price: '',
-  description: '',
-};
+function AddApartment() {
+  const { dispatch } = useApartmentsContext()
 
-function AddApartment({onAdd}) {
-  const [values, setValues] = useState(initialValues);
+  const [name, setName] = useState('')
+  const [rooms, setRooms] = useState(1)
+  const [price, setPrice] = useState('')
+  const [description, setDescription] = useState('')
+  const [error, setError] = useState(null)
+  // const [emptyFields, setEmptyFields] = useState([])
 
-  const handleChange = (e) => {
-    const {name, value} = e.target;
+  // const [values, setValues] = useState(initialValues)
 
-    if (e.target.type === 'number' || e.target.tagName === 'SELECT') {
-      setValues({
-        ...values,
-        [name]: +value,
-      });
-    } else {
-      setValues({
-        ...values,
-        [name]: value,
-      });
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target
+
+  //   if (e.target.type === 'number' || e.target.tagName === 'SELECT') {
+  //     setValues({
+  //       ...values,
+  //       [name]: +value,
+  //     })
+  //   } else {
+  //     setValues({
+  //       ...values,
+  //       [name]: value,
+  //     })
+  //   }
+
+  //   if (e.target.type === 'number') {
+  //     e.target.value = +parseInt(e.target.value)
+  //   }
+  // }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    const apartment = { name, rooms, price, description }
+
+    const response = await fetch('http://localhost:4000/api/apartments', {
+      method: 'POST',
+      body: JSON.stringify(apartment),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    const json = await response.json()
+
+    if (!response.ok) {
+      setError(json.error)
+      // setEmptyFields(json.emptyFields)
     }
-
-    if (e.target.type === 'number') {
-      e.target.value = +parseInt(e.target.value);
+    if (response.ok) {
+      // setEmptyFields([])
+      setError(null)
+      setName('')
+      setRooms(1)
+      setPrice('')
+      setDescription('')
+      // console.log('new apartment added', json)
+      dispatch({ type: 'CREATE_APARTMENT', payload: json })
     }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onAdd(values);
-    setValues(initialValues);
-  };
+  }
 
   return (
     <>
@@ -51,8 +78,9 @@ function AddApartment({onAdd}) {
             placeholder='Ex. Flat in the city center'
             maxLength={99}
             required
-            value={values.name}
-            onChange={handleChange}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            // className={emptyFields.includes('name') ? 'error' : ''}
           />
         </div>
 
@@ -61,8 +89,9 @@ function AddApartment({onAdd}) {
           <select
             name='rooms'
             id='rooms'
-            value={values.rooms}
-            onChange={handleChange}
+            value={rooms}
+            onChange={(e) => setRooms(e.target.value)}
+            // className={emptyFields.includes('rooms') ? 'error' : ''}
           >
             <option value='1'>1</option>
             <option value='2'>2</option>
@@ -78,9 +107,10 @@ function AddApartment({onAdd}) {
             id='price'
             placeholder='99.00'
             min={1}
-            value={values.price}
             required
-            onChange={handleChange}
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            // className={emptyFields.includes('price') ? 'error' : ''}
           />
         </div>
 
@@ -93,15 +123,18 @@ function AddApartment({onAdd}) {
             placeholder='Ex. Flat in the city center'
             maxLength={999}
             required
-            value={values.description}
-            onChange={handleChange}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            // className={emptyFields.includes('description') ? 'error' : ''}
           />
         </div>
 
         <Button BgColor='#26cf96' text='Submit rent' class='submit-btn' />
+        <br />
+        {/* {error && <div className='error'>{error}</div>} */}
       </form>
     </>
-  );
+  )
 }
 
-export default AddApartment;
+export default AddApartment

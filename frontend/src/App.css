@@ -1,3 +1,7 @@
+:root {
+  --error: #e7195a;
+}
+
 .App {
   max-width: 1000px;
   margin: 0 auto;
@@ -17,6 +21,11 @@ h2 {
 
 select {
   padding: 9px 10px;
+}
+
+input.error,
+textarea.error {
+  border: 2px solid var(--error);
 }
 
 @media screen and (max-width: 900px) {
