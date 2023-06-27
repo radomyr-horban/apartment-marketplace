@@ -5,10 +5,13 @@ import './Apartment.css'
 import Button from '../Button/Button'
 import useApartmentsContext from '../../hooks/useApartmentsContext'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+import useAxios from '../../hooks/useAxios'
 
 function Apartment({ apartment, setEditedApartment, setIsEditing }) {
   const { dispatch } = useApartmentsContext()
   const { title, rooms, price, description, createdAt } = apartment
+
+  //! useAxios
 
   const handleDeleteClick = async () => {
     try {
@@ -16,7 +19,6 @@ function Apartment({ apartment, setEditedApartment, setIsEditing }) {
         `http://localhost:4000/api/apartments/${apartment._id}`
       )
       const json = response.data
-
       if (response.status === 200) {
         dispatch({ type: 'DELETE_APARTMENT', payload: json })
       }

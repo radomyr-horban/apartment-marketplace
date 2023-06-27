@@ -4,12 +4,25 @@ import axios from 'axios'
 import Apartment from '../components/Apartment/Apartment'
 import ApartmentForm from '../components/ApartmentForm/ApartmentForm'
 import useApartmentsContext from '../hooks/useApartmentsContext'
+import { useAxios } from '../hooks/useAxios'
 
 const Home = () => {
   const { apartments, dispatch } = useApartmentsContext()
 
   const [isEditing, setIsEditing] = useState(false)
   const [editedApartment, setEditedApartment] = useState(null)
+
+  //! useAxios
+  // const { response, error, isLoading } = useAxios({
+  //   method: 'get',
+  //   url: '/',
+  // })
+
+  // useEffect(() => {
+  //   if (response) {
+  //     dispatch({ type: 'GET_APARTMENTS', payload: response })
+  //   }
+  // }, [response, dispatch, isEditing])
 
   useEffect(() => {
     const fetchApartments = async () => {

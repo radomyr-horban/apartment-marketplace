@@ -97,13 +97,13 @@ function ApartmentForm({ isEditing, setIsEditing, editedApartment }) {
   return (
     <>
       <h2>🤑 Create a new rent</h2>
-      <form action='POST' className='apartment-form' onSubmit={handleSubmit}>
+      <form className='apartment-form' onSubmit={handleSubmit}>
         <div className='form-field'>
           <label htmlFor='title'>Name</label>
           <input
             type='text'
             name='title'
-            id='titl'
+            id='title'
             placeholder='Ex. Flat in the city center'
             maxLength={99}
             required
@@ -161,9 +161,9 @@ function ApartmentForm({ isEditing, setIsEditing, editedApartment }) {
         <Button
           BgColor='#26cf96'
           text={isEditing ? 'Save' : 'Create'}
-          className='submit-btn'
+          className='btn submit-btn'
         />
-        <br />
+        {/* <br /> */}
         {/* {error && <div className='error'>{error}</div>} */}
       </form>
     </>
