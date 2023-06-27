@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 import Apartment from '../components/Apartment/Apartment'
 import ApartmentForm from '../components/ApartmentForm/ApartmentForm'
@@ -12,11 +13,15 @@ const Home = () => {
 
   useEffect(() => {
     const fetchApartments = async () => {
-      const response = await fetch('http://localhost:4000/api/apartments')
-      const json = await response.json()
+      try {
+        const response = await axios.get('http://localhost:4000/api/apartments')
+        const json = response.data
 
-      if (response.ok) {
-        dispatch({ type: 'GET_APARTMENTS', payload: json })
+        if (response.status === 200) {
+          dispatch({ type: 'GET_APARTMENTS', payload: json })
+        }
+      } catch (error) {
+        console.log(error)
       }
     }
 
@@ -26,7 +31,6 @@ const Home = () => {
   return (
     <div className='home'>
       <h1>Apartments Marketplace</h1>
-      {/* <ApartmentForm /> */}
       <ApartmentForm
         isEditing={isEditing}
         editedApartment={editedApartment}

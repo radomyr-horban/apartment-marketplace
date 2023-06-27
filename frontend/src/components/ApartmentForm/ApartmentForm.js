@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Button from '../Button/Button'
 import './ApartmentForm.css'
 import useApartmentsContext from '../../hooks/useApartmentsContext'
+import axios from 'axios'
 
 function ApartmentForm({ isEditing, setIsEditing, editedApartment }) {
   const { dispatch } = useApartmentsContext()
@@ -30,53 +31,65 @@ function ApartmentForm({ isEditing, setIsEditing, editedApartment }) {
     //! Creating or editing
 
     if (isEditing) {
-      const response = await fetch(
-        `http://localhost:4000/api/apartments/${editedApartment._id}`,
-        {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+      try {
+        const response = await axios.patch(
+          `http://localhost:4000/api/apartments/${editedApartment._id}`,
+          apartment,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        )
+        const json = response.data
 
-          body: JSON.stringify(apartment),
+        if (response.status !== 200) {
+          setError(json.error)
+        } else {
+          setIsEditing(false)
+          // setEmptyFields([])
+          // console.log('apartment was edited', json)
+
+          setError(null)
+          setTitle('')
+          setRooms(1)
+          setPrice('')
+          setDescription('')
+          dispatch({ type: 'UPDATE_APARTMENT', payload: json })
         }
-      )
-      const json = await response.json()
-
-      if (!response.ok) {
-        setError(json.error)
-      } else {
-        setIsEditing(false)
-
-        setError(null)
-        setTitle('')
-        setRooms(1)
-        setPrice('')
-        setDescription('')
-        dispatch({ type: 'UPDATE_APARTMENT', payload: json })
+      } catch (error) {
+        console.log(error)
       }
     } else {
-      const response = await fetch('http://localhost:4000/api/apartments', {
-        method: 'POST',
-        body: JSON.stringify(apartment),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-      const json = await response.json()
+      //! axios
+      try {
+        const response = await axios.post(
+          'http://localhost:4000/api/apartments',
+          apartment,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        )
+        const json = response.data
 
-      if (!response.ok) {
-        setError(json.error)
-        // setEmptyFields(json.emptyFields)
-      } else {
-        // setEmptyFields([])
-        setError(null)
-        setTitle('')
-        setRooms(1)
-        setPrice('')
-        setDescription('')
-        // console.log('new apartment added', json)
-        dispatch({ type: 'CREATE_APARTMENT', payload: json })
+        if (response.status !== 200) {
+          setError(json.error)
+          // setEmptyFields(json.emptyFields)
+        } else {
+          // setEmptyFields([])
+          // console.log('apartment was created', json)
+
+          setError(null)
+          setTitle('')
+          setRooms(1)
+          setPrice('')
+          setDescription('')
+          dispatch({ type: 'CREATE_APARTMENT', payload: json })
+        }
+      } catch (error) {
+        console.log(error)
       }
     }
   }
