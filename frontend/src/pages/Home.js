@@ -1,11 +1,15 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 import Apartment from '../components/Apartment/Apartment'
-import AddApartment from '../components/AddApartment/AddApartment'
+import ApartmentForm from '../components/ApartmentForm/ApartmentForm'
 import useApartmentsContext from '../hooks/useApartmentsContext'
 
 const Home = () => {
   const { apartments, dispatch } = useApartmentsContext()
+
+  const [isEditing, setIsEditing] = useState(false)
+  const [editedApartment, setEditedApartment] = useState(null)
+
   useEffect(() => {
     const fetchApartments = async () => {
       const response = await fetch('http://localhost:4000/api/apartments')
@@ -17,16 +21,27 @@ const Home = () => {
     }
 
     fetchApartments()
-  }, [dispatch])
+  }, [dispatch, isEditing])
 
   return (
     <div className='home'>
       <h1>Apartments Marketplace</h1>
-      <AddApartment />
+      {/* <ApartmentForm /> */}
+      <ApartmentForm
+        isEditing={isEditing}
+        editedApartment={editedApartment}
+        setIsEditing={setIsEditing}
+      />
       <div className='apartments'>
         {apartments &&
           apartments.map((apartment) => (
-            <Apartment key={apartment._id} apartment={apartment} />
+            <Apartment
+              key={apartment._id}
+              apartment={apartment}
+              editedApartment={editedApartment}
+              setEditedApartment={setEditedApartment}
+              setIsEditing={setIsEditing}
+            />
           ))}
       </div>
     </div>

@@ -1,12 +1,12 @@
-import React from 'react';
-import Button from './Button/Button';
+import React from 'react'
+import Button from './Button/Button'
 
-function CurrentRent({apt, onCancelSubmit}) {
+function CurrentRent({ apt, onCancelSubmit }) {
   return (
     <>
       <div className='apt-block'>
         <div className='apt-info'>
-          <span>{apt.name} / </span>
+          <span>{apt.title} / </span>
           <span>{apt.rooms} rooms / </span>
           <span>${apt.price}</span>
           <br />
@@ -27,7 +27,7 @@ function CurrentRent({apt, onCancelSubmit}) {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default CurrentRent;
+export default CurrentRent

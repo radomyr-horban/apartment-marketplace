@@ -22,12 +22,12 @@ const getSingleApartment = async (req, res) => {
 }
 
 const createApartment = async (req, res) => {
-  const { name, rooms, price, description } = req.body
+  const { title, rooms, price, description } = req.body
 
   let emptyFields = []
 
-  if (!name) {
-    emptyFields.push('name')
+  if (!title) {
+    emptyFields.push('title')
   }
   if (!rooms) {
     emptyFields.push('rooms')
@@ -47,7 +47,7 @@ const createApartment = async (req, res) => {
   // add document to db
   try {
     const apartment = await Apartment.create({
-      name,
+      title,
       rooms,
       price,
       description,

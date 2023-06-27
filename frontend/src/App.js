@@ -5,33 +5,9 @@ import './App.css'
 
 import Home from './pages/Home'
 import Apartments from './components/Apartments'
-import AddApartment from './components/AddApartment/AddApartment'
+import ApartmentForm from './components/ApartmentForm/ApartmentForm'
 import SortPanel from './components/SortPanel/SortPanel'
 import CurrentRents from './components/CurrentRents'
-
-// const initialState = [
-//   {
-//     id: '1',
-//     name: 'Market square apartments 1',
-//     rooms: 1,
-//     price: 10,
-//     description: 'Some description of the apartment',
-//   },
-//   {
-//     id: '2',
-//     name: 'Market square apartments 2',
-//     rooms: 2,
-//     price: 20,
-//     description: 'Some description of the apartment',
-//   },
-//   {
-//     id: '3',
-//     name: 'Market square apartments 3',
-//     rooms: 3,
-//     price: 30,
-//     description: 'Some description of the apartment',
-//   },
-// ]
 
 function App() {
   // const [apartments, setApartments] = useState(
@@ -42,7 +18,7 @@ function App() {
   //   JSON.parse(localStorage.getItem('currentRent')) || [
   //     {
   //       id: '1',
-  //       name: 'Market square apartments 1',
+  //       title: 'Market square apartments 1',
   //       rooms: 1,
   //       price: 10,
   //       description: 'some description',
@@ -102,7 +78,7 @@ function App() {
           <Route path='/' element={<Home />} />
         </Routes>
         {/* <h1>Apartments Marketplace</h1> */}
-        {/* <AddApartment onAdd={addApt} />
+        {/* <ApartmentForm onAdd={addApt} />
         <CurrentRents currentRent={currentRent} onCancelSubmit={cancelSubmit} />
         <SortPanel
           aptsCounter={aptsCounter}
