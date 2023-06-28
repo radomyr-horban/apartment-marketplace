@@ -12,14 +12,17 @@ const Home = () => {
   const [isEditing, setIsEditing] = useState(false)
   const [editedApartment, setEditedApartment] = useState(null)
 
+  const [isLoading, setIsLoading] = useState(true)
+
   //! useAxios
   // const { response, error, isLoading } = useAxios({
-  //   method: 'get',
+  //   method: 'GET',
   //   url: '/',
   // })
 
   // useEffect(() => {
   //   if (response) {
+  //     console.log(response)
   //     dispatch({ type: 'GET_APARTMENTS', payload: response })
   //   }
   // }, [response, dispatch, isEditing])
@@ -32,6 +35,7 @@ const Home = () => {
 
         if (response.status === 200) {
           dispatch({ type: 'GET_APARTMENTS', payload: json })
+          setIsLoading(false)
         }
       } catch (error) {
         console.log(error)
@@ -50,7 +54,10 @@ const Home = () => {
         setIsEditing={setIsEditing}
       />
       <div className='apartments'>
-        {apartments &&
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          apartments &&
           apartments.map((apartment) => (
             <Apartment
               key={apartment._id}
@@ -59,7 +66,8 @@ const Home = () => {
               setEditedApartment={setEditedApartment}
               setIsEditing={setIsEditing}
             />
-          ))}
+          ))
+        )}
       </div>
     </div>
   )
