@@ -20,6 +20,11 @@ const rentedApartmentSchema = new Schema(
       type: String,
       required: true,
     },
+    postId: {
+      type: String,
+      // type: ObjectId,
+      required: true,
+    },
   },
   { timestamps: { createdAt: true, updatedAt: false } }
 )

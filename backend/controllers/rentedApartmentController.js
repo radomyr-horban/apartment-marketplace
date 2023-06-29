@@ -26,7 +26,7 @@ const getSingleRentedApartment = async (req, res) => {
 
 //! POST
 const addRentedApartment = async (req, res) => {
-  const { title, rooms, price, description } = req.body
+  const { title, rooms, price, description, postId } = req.body
 
   let emptyFields = []
 
@@ -56,6 +56,7 @@ const addRentedApartment = async (req, res) => {
       rooms,
       price,
       description,
+      postId,
     })
     res.status(200).json(rentedApartment)
   } catch (error) {

@@ -5,18 +5,48 @@ import './Apartment.css'
 import Button from '../Button/Button'
 import useApartmentsContext from '../../hooks/useApartmentsContext'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
-import useAxios from '../../hooks/useAxios'
+// import useAxios from '../../hooks/useAxios'
 
-function Apartment({
-  apartment,
-  setEditedApartment,
-  setIsEditing,
-  setCurrentRent,
-}) {
-  const { dispatch } = useApartmentsContext()
+function Apartment({ apartment, setEditedApartment, setIsEditing }) {
+  const { rentedApartments, dispatch } = useApartmentsContext()
   const { title, rooms, price, description, createdAt } = apartment
 
-  //! useAxios
+  const [error, setError] = useState(null)
+
+  const handleRentClick = async () => {
+    const isRented = rentedApartments.find(
+      (rentedApartment) => rentedApartment.postId === String(apartment._id)
+    )
+
+    if (!isRented) {
+      try {
+        const response = await axios.post(
+          'http://localhost:4000/api/rentedApartments',
+          { ...apartment, postId: String(apartment._id) },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        )
+        const json = response.data
+
+        if (response.status !== 200) {
+          setError(json.error)
+        } else {
+          setError(null)
+          dispatch({ type: 'ADD_RENTED_APARTMENT', payload: json })
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+
+  const handleEditClick = () => {
+    setIsEditing(true)
+    setEditedApartment(apartment)
+  }
 
   const handleDeleteClick = async () => {
     try {
@@ -30,27 +60,6 @@ function Apartment({
     } catch (error) {
       console.log(error)
     }
-  }
-
-  const handleEditClick = () => {
-    setIsEditing(true)
-    setEditedApartment(apartment)
-  }
-
-  // TODO
-  const handleRentClick = async () => {
-    // try {
-    //   const response = await axios.post(
-    //     `http://localhost:4000/api/apartments/${apartment._id}`
-    //   )
-    //   const json = response.data
-    //   if (response.status === 200) {
-    //     dispatch({ type: 'DELETE_APARTMENT', payload: json })
-    //   }
-    // } catch (error) {
-    //   console.log(error)
-    // }
-    // setCurrentRent(apartment)
   }
 
   return (

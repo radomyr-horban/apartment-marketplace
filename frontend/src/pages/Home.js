@@ -8,19 +8,11 @@ import CurrentRents from '../components/CurrentRents'
 
 const Home = () => {
   const { apartments, dispatch } = useApartmentsContext()
+  console.log(apartments)
 
   const [isEditing, setIsEditing] = useState(false)
   const [editedApartment, setEditedApartment] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
-
-  //! CurrentRent
-  const [currentRent, setCurrentRent] = useState(null)
-
-  const onCancelRent = (id) => {
-    setCurrentRent(currentRent.filter((apartment) => apartment.id !== id))
-  }
-
-  //!
 
   useEffect(() => {
     const fetchApartments = async () => {
@@ -31,13 +23,11 @@ const Home = () => {
         if (response.status === 200) {
           dispatch({ type: 'GET_APARTMENTS', payload: json })
           setIsLoading(false)
-          // console.log(apartments)
         }
       } catch (error) {
         console.log(error)
       }
     }
-
     fetchApartments()
   }, [dispatch, isEditing])
 
@@ -49,7 +39,6 @@ const Home = () => {
         editedApartment={editedApartment}
         setIsEditing={setIsEditing}
       />
-      {/* <CurrentRents currentRent={currentRent} onCancelRent={onCancelRent} /> */}
       <CurrentRents />
       <Apartments
         apartments={apartments}
@@ -57,8 +46,6 @@ const Home = () => {
         setEditedApartment={setEditedApartment}
         setIsEditing={setIsEditing}
         isLoading={isLoading}
-        currentRent={currentRent}
-        setCurrentRent={setCurrentRent}
       />
     </div>
   )

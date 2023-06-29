@@ -2,16 +2,12 @@ import React from 'react'
 import Apartment from './Apartment/Apartment'
 // import useApartmentsContext from '../hooks/useApartmentsContext'
 
-// function Apartments({ apartments, onDelete, onRent, sortType, filterValue }) {
 function Apartments({
   apartments,
   editedApartment,
   setEditedApartment,
   setIsEditing,
   isLoading,
-  // !
-  currentRent,
-  setCurrentRent,
 }) {
   // let apartmentsCopy = [...apartments]
   // console.log('Apartments: ', apartments)
@@ -53,9 +49,7 @@ function Apartments({
               editedApartment={editedApartment}
               setEditedApartment={setEditedApartment}
               setIsEditing={setIsEditing}
-              //!
-              currentRent={currentRent}
-              setCurrentRent={setCurrentRent}
+              // postId={String(apartment._id)}
             />
           ))
         )}
