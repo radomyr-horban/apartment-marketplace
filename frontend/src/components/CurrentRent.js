@@ -1,20 +1,20 @@
 import React from 'react'
 import Button from './Button/Button'
 
-function CurrentRent({ apt, onCancelSubmit }) {
+function CurrentRent({ apartment, onCancelSubmit }) {
   return (
     <>
       <div className='apt-block'>
         <div className='apt-info'>
-          <span>{apt.title} / </span>
-          <span>{apt.rooms} rooms / </span>
-          <span>${apt.price}</span>
+          <span>{apartment.title} / </span>
+          <span>{apartment.rooms} rooms / </span>
+          <span>${apartment.price}</span>
           <br />
           <br />
           <span id='apt-description'>
             <b>Description: </b>
             <br />
-            {apt.description}
+            {apartment.description}
           </span>
         </div>
 
@@ -22,7 +22,7 @@ function CurrentRent({ apt, onCancelSubmit }) {
           <Button
             BgColor='red'
             text='Cancel rent'
-            onClick={() => onCancelSubmit(apt.id)}
+            onClick={() => onCancelSubmit(apartment.id)}
           />
         </div>
       </div>

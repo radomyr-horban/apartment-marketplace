@@ -1,22 +1,22 @@
-import React from 'react';
-import CurrentRent from './CurrentRent';
+import React from 'react'
+import CurrentRent from './CurrentRent'
 
-function CurrentRents({currentRent, onCancelSubmit}) {
+function CurrentRents({ currentRent, onCancelSubmit }) {
   return (
     <>
       <h2>🤩 Your current rent</h2>
       {currentRent &&
-        currentRent.map((apt) => {
+        currentRent.map((apartment) => {
           return (
             <CurrentRent
-              key={apt.id}
-              apt={apt}
+              key={apartment.id}
+              apartment={apartment}
               onCancelSubmit={onCancelSubmit}
             />
-          );
+          )
         })}
     </>
-  );
+  )
 }
 
-export default CurrentRents;
+export default CurrentRents

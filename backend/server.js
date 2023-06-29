@@ -26,12 +26,12 @@ app.use((req, res, next) => {
 })
 
 // routes
-app.use('/api/apartments', apartmentRoutes)
+// app.use('/api/apartments', apartmentRoutes)
+app.use('/api', apartmentRoutes)
 
 // connect to DB
 mongoose.set('strictQuery', false)
 mongoose
-  //   .connect(process.env.DATABASE_URL, { useNewUrlParser: true })
   .connect(process.env.DATABASE_URL)
   .then(() => {
     app.listen(PORT, () => {

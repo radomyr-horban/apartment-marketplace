@@ -10,10 +10,6 @@ import SortPanel from './components/SortPanel/SortPanel'
 import CurrentRents from './components/CurrentRents'
 
 function App() {
-  // const [apartments, setApartments] = useState(
-  //   JSON.parse(localStorage.getItem('apartments')) || initialState
-  // )
-
   // const [currentRent, setCurrentRent] = useState(
   //   JSON.parse(localStorage.getItem('currentRent')) || [
   //     {
@@ -33,7 +29,7 @@ function App() {
   // }, [apartments, currentRent])
 
   // // Cancel Rent
-  // const cancelSubmit = (id) => {
+  // const onCancelRent = (id) => {
   //   setCurrentRent(currentRent.filter((apt) => apt.id !== id))
   // }
 
@@ -77,9 +73,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
         </Routes>
-        {/* <h1>Apartments Marketplace</h1> */}
-        {/* <ApartmentForm onAdd={addApt} />
-        <CurrentRents currentRent={currentRent} onCancelSubmit={cancelSubmit} />
+
+        {/* <CurrentRents currentRent={currentRent} onCancelRent={onCancelRent} />
         <SortPanel
           aptsCounter={aptsCounter}
           onFilter={setFilterValue}

@@ -7,7 +7,12 @@ import useApartmentsContext from '../../hooks/useApartmentsContext'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import useAxios from '../../hooks/useAxios'
 
-function Apartment({ apartment, setEditedApartment, setIsEditing }) {
+function Apartment({
+  apartment,
+  setEditedApartment,
+  setIsEditing,
+  setCurrentRent,
+}) {
   const { dispatch } = useApartmentsContext()
   const { title, rooms, price, description, createdAt } = apartment
 
@@ -33,7 +38,20 @@ function Apartment({ apartment, setEditedApartment, setIsEditing }) {
   }
 
   // TODO
-  const handleRentClick = async () => {}
+  const handleRentClick = async () => {
+    // try {
+    //   const response = await axios.post(
+    //     `http://localhost:4000/api/apartments/${apartment._id}`
+    //   )
+    //   const json = response.data
+    //   if (response.status === 200) {
+    //     dispatch({ type: 'DELETE_APARTMENT', payload: json })
+    //   }
+    // } catch (error) {
+    //   console.log(error)
+    // }
+    // setCurrentRent(apartment)
+  }
 
   return (
     <>

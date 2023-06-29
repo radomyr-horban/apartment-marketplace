@@ -1,6 +1,8 @@
 const express = require('express')
-const Apartment = require('../models/apartmentModel')
 const router = express.Router()
+
+// const Apartment = require('../models/apartmentModel')
+// const RentedApartment = require('../models/rentedApartmentModel')
 
 const {
   createApartment,
@@ -10,14 +12,24 @@ const {
   updateApartment,
 } = require('../controllers/apartmentController')
 
-router.get('/', getAllApartments)
+const {
+  getAllRentedApartments,
+  getSingleRentedApartment,
+  addRentedApartment,
+  deleteRentedApartment,
+} = require('../controllers/rentedApartmentController')
 
-router.get('/:id', getSingleApartment)
+//! Home
+router.get('/apartments', getAllApartments)
+router.get('/apartments/:id', getSingleApartment)
+router.post('/apartments', createApartment)
+router.delete('/apartments/:id', deleteApartment)
+router.patch('/apartments/:id', updateApartment)
 
-router.post('/', createApartment)
-
-router.delete('/:id', deleteApartment)
-
-router.patch('/:id', updateApartment)
+//! Rent
+router.get('/rentedApartments', getAllRentedApartments)
+router.get('/rentedApartments/:id', getSingleRentedApartment)
+router.post('/rentedApartments', addRentedApartment)
+router.delete('/rentedApartments/:id', deleteRentedApartment)
 
 module.exports = router

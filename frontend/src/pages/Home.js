@@ -1,31 +1,26 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
-import Apartment from '../components/Apartment/Apartment'
 import ApartmentForm from '../components/ApartmentForm/ApartmentForm'
 import useApartmentsContext from '../hooks/useApartmentsContext'
-import { useAxios } from '../hooks/useAxios'
+import Apartments from '../components/Apartments'
+import CurrentRents from '../components/CurrentRents'
 
 const Home = () => {
   const { apartments, dispatch } = useApartmentsContext()
 
   const [isEditing, setIsEditing] = useState(false)
   const [editedApartment, setEditedApartment] = useState(null)
-
   const [isLoading, setIsLoading] = useState(true)
 
-  //! useAxios
-  // const { response, error, isLoading } = useAxios({
-  //   method: 'GET',
-  //   url: '/',
-  // })
+  //! CurrentRent
+  const [currentRent, setCurrentRent] = useState(null)
 
-  // useEffect(() => {
-  //   if (response) {
-  //     console.log(response)
-  //     dispatch({ type: 'GET_APARTMENTS', payload: response })
-  //   }
-  // }, [response, dispatch, isEditing])
+  const onCancelRent = (id) => {
+    setCurrentRent(currentRent.filter((apartment) => apartment.id !== id))
+  }
+
+  //!
 
   useEffect(() => {
     const fetchApartments = async () => {
@@ -36,6 +31,7 @@ const Home = () => {
         if (response.status === 200) {
           dispatch({ type: 'GET_APARTMENTS', payload: json })
           setIsLoading(false)
+          // console.log(apartments)
         }
       } catch (error) {
         console.log(error)
@@ -53,22 +49,17 @@ const Home = () => {
         editedApartment={editedApartment}
         setIsEditing={setIsEditing}
       />
-      <div className='apartments'>
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : (
-          apartments &&
-          apartments.map((apartment) => (
-            <Apartment
-              key={apartment._id}
-              apartment={apartment}
-              editedApartment={editedApartment}
-              setEditedApartment={setEditedApartment}
-              setIsEditing={setIsEditing}
-            />
-          ))
-        )}
-      </div>
+      {/* <CurrentRents currentRent={currentRent} onCancelRent={onCancelRent} /> */}
+      <CurrentRents />
+      <Apartments
+        apartments={apartments}
+        editedApartment={editedApartment}
+        setEditedApartment={setEditedApartment}
+        setIsEditing={setIsEditing}
+        isLoading={isLoading}
+        currentRent={currentRent}
+        setCurrentRent={setCurrentRent}
+      />
     </div>
   )
 }
