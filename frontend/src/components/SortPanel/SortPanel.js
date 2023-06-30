@@ -2,12 +2,13 @@ import React from 'react'
 import './SortPanel.css'
 import useApartmentsContext from '../../hooks/useApartmentsContext'
 
-// function SortPanel({aptsCounter, setSortType, onFilter}) {
-function SortPanel({ setSortType, onFilter }) {
-  const { aptsCounter, dispatch } = useApartmentsContext()
+function SortPanel({ setSortType, setFilterValue }) {
+  const { aptsCounter } = useApartmentsContext()
+
+  //TODO: Move logic to ApartmentContext?
 
   const handleFilter = (e) => {
-    onFilter(e.target.value)
+    setFilterValue(e.target.value)
   }
 
   const handleSort = (e) => {

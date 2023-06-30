@@ -8,32 +8,33 @@ function Apartments({
   setEditedApartment,
   setIsEditing,
   isLoading,
+  //TODO: Move logic to ApartmentContext and remove these props?
+  sortType,
+  filterValue,
 }) {
-  // let apartmentsCopy = [...apartments]
-  // console.log('Apartments: ', apartments)
-  // console.log('ApartmentsCopy: ', apartmentsCopy)
+  let apartmentsCopy = [...apartments]
 
-  // const sortByPrice = (sortType) => {
-  //   return apartmentsCopy.sort((a, b) => {
-  //     if (sortType === 'low-to-high') {
-  //       return a.price - b.price
-  //     } else if (sortType === 'high-to-low') {
-  //       return b.price - a.price
-  //     }
-  //     return apartments
-  //   })
-  // }
-  // // sortByPrice(sortType)
+  const sortByPrice = (sortType) => {
+    return apartmentsCopy.sort((a, b) => {
+      if (sortType === 'low-to-high') {
+        return a.price - b.price
+      } else if (sortType === 'high-to-low') {
+        return b.price - a.price
+      }
+      return apartments
+    })
+  }
+  sortByPrice(sortType)
 
-  // const filterByRooms = (filterValue) => {
-  //   if (filterValue !== 'default') {
-  //     return (apartmentsCopy = apartmentsCopy.filter((apt) => {
-  //       return apt.rooms === +filterValue
-  //     }))
-  //   }
-  //   return apartments
-  // }
-  // // filterByRooms(filterValue)
+  const filterByRooms = (filterValue) => {
+    if (filterValue !== 'default') {
+      return (apartmentsCopy = apartmentsCopy.filter((apt) => {
+        return apt.rooms === +filterValue
+      }))
+    }
+    return apartments
+  }
+  filterByRooms(filterValue)
 
   return (
     <>
@@ -41,15 +42,14 @@ function Apartments({
         {isLoading ? (
           <p>Loading...</p>
         ) : (
-          apartments &&
-          apartments.map((apartment) => (
+          apartmentsCopy &&
+          apartmentsCopy.map((apartment) => (
             <Apartment
               key={apartment._id}
               apartment={apartment}
               editedApartment={editedApartment}
               setEditedApartment={setEditedApartment}
               setIsEditing={setIsEditing}
-              // postId={String(apartment._id)}
             />
           ))
         )}

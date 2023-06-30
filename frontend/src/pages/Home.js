@@ -9,11 +9,14 @@ import SortPanel from '../components/SortPanel/SortPanel'
 
 const Home = () => {
   const { apartments, dispatch } = useApartmentsContext()
-  // console.log(apartments)
 
   const [isEditing, setIsEditing] = useState(false)
   const [editedApartment, setEditedApartment] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
+
+  //TODO: Move logic to ApartmentContext and remove these useState?
+  const [sortType, setSortType] = useState('default')
+  const [filterValue, setFilterValue] = useState('default')
 
   useEffect(() => {
     const fetchApartments = async () => {
@@ -41,17 +44,16 @@ const Home = () => {
         setIsEditing={setIsEditing}
       />
       <CurrentRents />
-      <SortPanel
-      // aptsCounter={aptsCounter}
-      // onFilter={setFilterValue}
-      // setSortType={setSortType}
-      />
+      <SortPanel setFilterValue={setFilterValue} setSortType={setSortType} />
       <Apartments
         apartments={apartments}
         editedApartment={editedApartment}
         setEditedApartment={setEditedApartment}
         setIsEditing={setIsEditing}
         isLoading={isLoading}
+        //TODO: Move logic to ApartmentContext and remove these props?
+        sortType={sortType}
+        filterValue={filterValue}
       />
     </div>
   )
