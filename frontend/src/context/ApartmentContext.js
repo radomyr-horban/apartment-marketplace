@@ -15,7 +15,7 @@ export const apartmentsReducer = (state, action) => {
       return {
         ...state,
         apartments: action.payload,
-        aptsCounter: state.apartments.length,
+        aptsCounter: action.payload.length,
       }
 
     case actionTypes.CREATE_APARTMENT:
