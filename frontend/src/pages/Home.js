@@ -5,10 +5,11 @@ import ApartmentForm from '../components/ApartmentForm/ApartmentForm'
 import useApartmentsContext from '../hooks/useApartmentsContext'
 import Apartments from '../components/Apartments'
 import CurrentRents from '../components/CurrentRents'
+import SortPanel from '../components/SortPanel/SortPanel'
 
 const Home = () => {
   const { apartments, dispatch } = useApartmentsContext()
-  console.log(apartments)
+  // console.log(apartments)
 
   const [isEditing, setIsEditing] = useState(false)
   const [editedApartment, setEditedApartment] = useState(null)
@@ -40,6 +41,11 @@ const Home = () => {
         setIsEditing={setIsEditing}
       />
       <CurrentRents />
+      <SortPanel
+      // aptsCounter={aptsCounter}
+      // onFilter={setFilterValue}
+      // setSortType={setSortType}
+      />
       <Apartments
         apartments={apartments}
         editedApartment={editedApartment}

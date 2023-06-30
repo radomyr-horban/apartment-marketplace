@@ -6,6 +6,7 @@ export const ApartmentContext = createContext()
 const initialState = {
   apartments: [],
   rentedApartments: [],
+  aptsCounter: 0,
 }
 
 export const apartmentsReducer = (state, action) => {
@@ -14,12 +15,14 @@ export const apartmentsReducer = (state, action) => {
       return {
         ...state,
         apartments: action.payload,
+        aptsCounter: state.apartments.length,
       }
 
     case actionTypes.CREATE_APARTMENT:
       return {
         ...state,
         apartments: [action.payload, ...state.apartments],
+        aptsCounter: state.aptsCounter + 1,
       }
 
     case actionTypes.DELETE_APARTMENT:
@@ -28,6 +31,7 @@ export const apartmentsReducer = (state, action) => {
         apartments: state.apartments.filter(
           (apartment) => apartment._id !== action.payload._id
         ),
+        aptsCounter: state.aptsCounter - 1,
       }
 
     case actionTypes.UPDATE_APARTMENT:

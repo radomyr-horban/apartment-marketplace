@@ -1,14 +1,18 @@
-import React from 'react';
-import './SortPanel.css';
+import React from 'react'
+import './SortPanel.css'
+import useApartmentsContext from '../../hooks/useApartmentsContext'
 
-function SortPanel({aptsCounter, setSortType, onFilter}) {
+// function SortPanel({aptsCounter, setSortType, onFilter}) {
+function SortPanel({ setSortType, onFilter }) {
+  const { aptsCounter, dispatch } = useApartmentsContext()
+
   const handleFilter = (e) => {
-    onFilter(e.target.value);
-  };
+    onFilter(e.target.value)
+  }
 
   const handleSort = (e) => {
-    setSortType(e.target.value);
-  };
+    setSortType(e.target.value)
+  }
 
   return (
     <>
@@ -35,7 +39,7 @@ function SortPanel({aptsCounter, setSortType, onFilter}) {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default SortPanel;
+export default SortPanel

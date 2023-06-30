@@ -10,36 +10,6 @@ import SortPanel from './components/SortPanel/SortPanel'
 import CurrentRents from './components/CurrentRents'
 
 function App() {
-  // const [currentRent, setCurrentRent] = useState(
-  //   JSON.parse(localStorage.getItem('currentRent')) || [
-  //     {
-  //       id: '1',
-  //       title: 'Market square apartments 1',
-  //       rooms: 1,
-  //       price: 10,
-  //       description: 'some description',
-  //     },
-  //   ]
-  // )
-
-  // local storage
-  // useEffect(() => {
-  //   localStorage.setItem('apartments', JSON.stringify(apartments))
-  //   localStorage.setItem('currentRent', JSON.stringify(currentRent))
-  // }, [apartments, currentRent])
-
-  // // Cancel Rent
-  // const onCancelRent = (id) => {
-  //   setCurrentRent(currentRent.filter((apt) => apt.id !== id))
-  // }
-
-  // Rent Apartment
-  // const rentApt = (apt) => {
-  //   if (!currentRent.some((el) => el.id === apt.id)) {
-  //     setCurrentRent([...currentRent, apt])
-  //   }
-  // }
-
   // const [aptsCounter, setAptsCounter] = useState(apartments.length)
 
   // Add Apartment
@@ -73,14 +43,12 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
         </Routes>
-
-        {/* <CurrentRents currentRent={currentRent} onCancelRent={onCancelRent} />
-        <SortPanel
+        {/* <SortPanel
           aptsCounter={aptsCounter}
           onFilter={setFilterValue}
           setSortType={setSortType}
-        />
-        <Apartments
+        /> */}
+        {/* <Apartments
           apartments={apartments}
           onDelete={deleteApt}
           onRent={rentApt}
