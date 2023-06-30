@@ -5,8 +5,6 @@ import useApartmentsContext from '../../hooks/useApartmentsContext'
 function SortPanel({ setSortType, setFilterValue }) {
   const { aptsCounter } = useApartmentsContext()
 
-  //TODO: Move logic to ApartmentContext?
-
   const handleFilter = (e) => {
     setFilterValue(e.target.value)
   }

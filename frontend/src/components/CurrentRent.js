@@ -8,7 +8,7 @@ function CurrentRent({ rentedApartment }) {
 
   const { title, rooms, price, description } = rentedApartment
 
-  const onCancelRent = async () => {
+  const handleCancelRent = async () => {
     try {
       const response = await axios.delete(
         `http://localhost:4000/api/rentedApartments/${rentedApartment._id}`
@@ -42,7 +42,7 @@ function CurrentRent({ rentedApartment }) {
           <Button
             BgColor='red'
             text='Cancel rent'
-            onClick={() => onCancelRent()}
+            onClick={() => handleCancelRent()}
           />
         </div>
       </div>

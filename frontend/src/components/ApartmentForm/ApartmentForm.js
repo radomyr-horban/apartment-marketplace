@@ -28,7 +28,7 @@ function ApartmentForm({ isEditing, setIsEditing, editedApartment }) {
 
     const apartment = { title, rooms, price, description }
 
-    //! Creating or editing
+    //! Creating or Editing
 
     if (isEditing) {
       try {

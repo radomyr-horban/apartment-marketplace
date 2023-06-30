@@ -14,7 +14,6 @@ const Home = () => {
   const [editedApartment, setEditedApartment] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
 
-  //TODO: Move logic to ApartmentContext and remove these useState?
   const [sortType, setSortType] = useState('default')
   const [filterValue, setFilterValue] = useState('default')
 
@@ -51,7 +50,6 @@ const Home = () => {
         setEditedApartment={setEditedApartment}
         setIsEditing={setIsEditing}
         isLoading={isLoading}
-        //TODO: Move logic to ApartmentContext and remove these props?
         sortType={sortType}
         filterValue={filterValue}
       />
