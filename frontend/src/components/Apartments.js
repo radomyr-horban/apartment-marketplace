@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+
 import Apartment from './Apartment/Apartment'
-// import useApartmentsContext from '../hooks/useApartmentsContext'
+import sortByPrice from '../utils/sortUtil'
+import filterByRooms from '../utils/filterUtil'
 
 function Apartments({
   apartments,
@@ -8,33 +10,17 @@ function Apartments({
   setEditedApartment,
   setIsEditing,
   isLoading,
-  //TODO: Move logic to ApartmentContext and remove these props?
   sortType,
   filterValue,
 }) {
-  let apartmentsCopy = [...apartments]
+  const [filteredApartments, setFilteredApartments] = useState(apartments)
 
-  const sortByPrice = (sortType) => {
-    return apartmentsCopy.sort((a, b) => {
-      if (sortType === 'low-to-high') {
-        return a.price - b.price
-      } else if (sortType === 'high-to-low') {
-        return b.price - a.price
-      }
-      return apartments
-    })
-  }
-  sortByPrice(sortType)
-
-  const filterByRooms = (filterValue) => {
-    if (filterValue !== 'default') {
-      return (apartmentsCopy = apartmentsCopy.filter((apt) => {
-        return apt.rooms === +filterValue
-      }))
-    }
-    return apartments
-  }
-  filterByRooms(filterValue)
+  useEffect(() => {
+    let apartmentsCopy = [...apartments]
+    apartmentsCopy = sortByPrice(apartmentsCopy, sortType)
+    apartmentsCopy = filterByRooms(apartmentsCopy, filterValue)
+    setFilteredApartments(apartmentsCopy)
+  }, [apartments, sortType, filterValue])
 
   return (
     <>
@@ -42,8 +28,8 @@ function Apartments({
         {isLoading ? (
           <p>Loading...</p>
         ) : (
-          apartmentsCopy &&
-          apartmentsCopy.map((apartment) => (
+          filteredApartments &&
+          filteredApartments.map((apartment) => (
             <Apartment
               key={apartment._id}
               apartment={apartment}
