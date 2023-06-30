@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://localhost:4000/api/apartments'
+axios.defaults.baseURL =
+  `${process.env.REACT_APP_CORS_ORIGIN_DEPLOY_SERVER}/api/apartments` ||
+  'http://localhost:4000/api/apartments'
 
 export const useAxios = ({ url, method, body = null, headers = null }) => {
   const [response, setResponse] = useState(null)

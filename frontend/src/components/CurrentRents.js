@@ -10,7 +10,8 @@ function CurrentRents() {
     const fetchRentedApartments = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:4000/api/rentedApartments'
+          `${process.env.REACT_APP_CORS_ORIGIN_DEPLOY_SERVER}/api/rentedApartments` ||
+            'http://localhost:4000/api/rentedApartments'
         )
         const json = response.data
 

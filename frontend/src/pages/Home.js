@@ -20,7 +20,10 @@ const Home = () => {
   useEffect(() => {
     const fetchApartments = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/apartments')
+        const response = await axios.get(
+          `${process.env.REACT_APP_CORS_ORIGIN_DEPLOY_SERVER}/api/apartments` ||
+            'http://localhost:4000/api/apartments'
+        )
         const json = response.data
 
         if (response.status === 200) {

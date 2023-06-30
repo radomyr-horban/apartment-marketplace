@@ -11,7 +11,8 @@ function CurrentRent({ rentedApartment }) {
   const handleCancelRent = async () => {
     try {
       const response = await axios.delete(
-        `http://localhost:4000/api/rentedApartments/${rentedApartment._id}`
+        `${process.env.REACT_APP_CORS_ORIGIN_DEPLOY_SERVER}/api/rentedApartments/${rentedApartment._id}` ||
+          `http://localhost:4000/api/rentedApartments/${rentedApartment._id}`
       )
       const json = response.data
       if (response.status === 200) {

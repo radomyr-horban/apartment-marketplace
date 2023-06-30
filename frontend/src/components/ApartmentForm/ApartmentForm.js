@@ -33,7 +33,8 @@ function ApartmentForm({ isEditing, setIsEditing, editedApartment }) {
     if (isEditing) {
       try {
         const response = await axios.patch(
-          `http://localhost:4000/api/apartments/${editedApartment._id}`,
+          `${process.env.REACT_APP_CORS_ORIGIN_DEPLOY_SERVER}/api/apartments/${editedApartment._id}` ||
+            `http://localhost:4000/api/apartments/${editedApartment._id}`,
           apartment,
           {
             headers: {
@@ -64,7 +65,8 @@ function ApartmentForm({ isEditing, setIsEditing, editedApartment }) {
       //! axios
       try {
         const response = await axios.post(
-          'http://localhost:4000/api/apartments',
+          `${process.env.REACT_APP_CORS_ORIGIN_DEPLOY_SERVER}/api/apartments` ||
+            'http://localhost:4000/api/apartments',
           apartment,
           {
             headers: {
