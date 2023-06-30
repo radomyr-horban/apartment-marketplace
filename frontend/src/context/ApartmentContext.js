@@ -43,7 +43,6 @@ export const apartmentsReducer = (state, action) => {
         apartments: updatedApartments,
       }
 
-    //! Rented Apartments
     case actionTypes.GET_RENTED_APARTMENTS:
       return {
         ...state,
