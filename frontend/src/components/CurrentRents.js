@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
-import CurrentRent from './CurrentRent'
 import axios from 'axios'
+
+import CurrentRent from './CurrentRent'
 import useApartmentsContext from '../hooks/useApartmentsContext'
 
-function CurrentRents() {
+function CurrentRents({ isRentLoading, setIsRentLoading }) {
   const { rentedApartments, dispatch } = useApartmentsContext()
 
   useEffect(() => {
@@ -17,6 +18,7 @@ function CurrentRents() {
 
         if (response.status === 200) {
           dispatch({ type: 'GET_RENTED_APARTMENTS', payload: json })
+          setIsRentLoading(false)
         }
       } catch (error) {
         console.log(error)
@@ -29,15 +31,17 @@ function CurrentRents() {
   return (
     <>
       <h2>🤩 Your current rent</h2>
-      {rentedApartments &&
-        rentedApartments.map((rentedApartment) => {
-          return (
-            <CurrentRent
-              key={rentedApartment._id}
-              rentedApartment={rentedApartment}
-            />
-          )
-        })}
+      {isRentLoading ? (
+        <p>Loading...</p>
+      ) : (
+        rentedApartments &&
+        rentedApartments.map((rentedApartment) => (
+          <CurrentRent
+            key={rentedApartment._id}
+            rentedApartment={rentedApartment}
+          />
+        ))
+      )}
     </>
   )
 }

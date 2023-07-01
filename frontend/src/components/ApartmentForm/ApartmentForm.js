@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import Button from '../Button/Button'
-import './ApartmentForm.css'
-import useApartmentsContext from '../../hooks/useApartmentsContext'
 import axios from 'axios'
+
+import './ApartmentForm.css'
+import Button from '../Button/Button'
+import useApartmentsContext from '../../hooks/useApartmentsContext'
 
 function ApartmentForm({ isEditing, setIsEditing, editedApartment }) {
   const { dispatch } = useApartmentsContext()

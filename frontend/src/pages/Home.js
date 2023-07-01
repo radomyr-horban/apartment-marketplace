@@ -12,7 +12,8 @@ const Home = () => {
 
   const [isEditing, setIsEditing] = useState(false)
   const [editedApartment, setEditedApartment] = useState(null)
-  const [isLoading, setIsLoading] = useState(true)
+  const [isApartmentLoading, setIsApartmentLoading] = useState(true)
+  const [isRentLoading, setIsRentLoading] = useState(true)
 
   const [sortType, setSortType] = useState('default')
   const [filterValue, setFilterValue] = useState('default')
@@ -28,7 +29,7 @@ const Home = () => {
 
         if (response.status === 200) {
           dispatch({ type: 'GET_APARTMENTS', payload: json })
-          setIsLoading(false)
+          setIsApartmentLoading(false)
         }
       } catch (error) {
         console.log(error)
@@ -45,14 +46,17 @@ const Home = () => {
         editedApartment={editedApartment}
         setIsEditing={setIsEditing}
       />
-      <CurrentRents />
+      <CurrentRents
+        isRentLoading={isRentLoading}
+        setIsRentLoading={setIsRentLoading}
+      />
       <SortPanel setFilterValue={setFilterValue} setSortType={setSortType} />
       <Apartments
         apartments={apartments}
         editedApartment={editedApartment}
         setEditedApartment={setEditedApartment}
         setIsEditing={setIsEditing}
-        isLoading={isLoading}
+        isApartmentLoading={isApartmentLoading}
         sortType={sortType}
         filterValue={filterValue}
       />

@@ -1,6 +1,7 @@
 import React from 'react'
-import Button from './Button/Button'
 import axios from 'axios'
+
+import Button from './Button/Button'
 import useApartmentsContext from '../hooks/useApartmentsContext'
 
 function CurrentRent({ rentedApartment }) {
