@@ -17,5 +17,12 @@
 }
 .apt-buttons {
   display: flex;
-  flex-wrap: nowrap;
+}
+
+@media screen and (max-width: 900px) {
+  .apartments-panel .apt-buttons {
+    min-height: 150px;
+    flex-direction: column;
+    justify-content: space-around;
+  }
 }
